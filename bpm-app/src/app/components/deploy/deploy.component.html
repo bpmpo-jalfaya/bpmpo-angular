@@ -1,0 +1,50 @@
+
+<form [formGroup]="deployform" novalidate (ngSubmit)="onSubmit()">
+        <div style="padding-top: 30px">
+                <h3>Formulario para despliegue de procesos</h3>
+        </div>
+        
+        <mat-card style="margin-top:10px; width: 80%;">  
+                <mat-card-content> 
+                  Seleccione el archivo que contiene la definición del proceso.
+                </mat-card-content>
+        
+        <mat-card-actions>  
+             <input type="file" formControlName="file" accept="text/xml" 
+             (change)="handleFileInput($event.target.files)"/>
+             <div *ngIf="f.file.errors">
+                <!-- <mat-error [hidden]="!f.file.errors.required">
+                         Debe seleccionar un fichero
+                </mat-error> -->
+        </div>
+            
+             <div style="margin-top: 20px">
+                <button mat-raised-button 
+                [disabled]="deployform.invalid"
+                color="warn"
+                 >
+                 Desplegar Proceso</button>
+             </div>
+
+        </mat-card-actions>  
+        </mat-card>
+        
+
+        <mat-card style="margin-top:2px; width: 100%;" >  
+                <div style="padding-top: 2px">
+                        <h3>Procesos desplegados en el sistema:</h3>
+                </div>
+                <mat-card-content> 
+                        <li *ngFor="let pc of processDefList" >
+                                <span></span>  - {{pc.name}}
+                                <span><b>Identificador: </b></span> {{pc.id}}
+                                <span><b>Versión: </b></span> {{pc.version}}
+                                <span><b>Descripcion: </b></span>{{pc.description}} 
+                        </li>
+                </mat-card-content>
+        </mat-card>
+            
+
+
+
+</form>

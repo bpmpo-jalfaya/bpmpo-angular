@@ -1,0 +1,41 @@
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+    <mat-card class="box">
+      <mat-card-header>
+        <mat-card-title>Conexión a BPM</mat-card-title>
+        Prueba de concepto
+      </mat-card-header>
+
+    <form [formGroup]="loginForm" class="example-form" (ngSubmit)="login()">
+  
+        <mat-card-content>
+          <mat-form-field class="example-full-width">
+                <input matInput  type="text" placeholder="Usuario" 
+                formControlName="username" required
+                />
+                <div *ngIf="submitted && f.username.errors">
+                        <mat-error [hidden]="!f.username.errors.required">
+                            Debe introducir un nombre de usuario
+                        </mat-error>
+                </div>
+               
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Password" formControlName="password" 
+            type="password" required>
+            <div *ngIf="submitted && f.password.errors">
+                    <mat-error [hidden]="!f.password.errors.required">
+                        Debe introducir una password
+                    </mat-error>
+
+            </div>
+          </mat-form-field>
+  
+  
+        </mat-card-content>
+  
+        <button mat-stroked-button color="primary" type="submit" class="btn-block">Conectar</button>
+  
+      </form>
+    </mat-card>
+  </div>

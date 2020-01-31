@@ -1,0 +1,82 @@
+<mat-card style="margin-top:10px; width: 100%;" >
+<form [formGroup]="inversionForm"  (ngSubmit)="createInversion()">
+        <h3>Crear inversión</h3>
+       
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start" fxLayoutGap="0.5%">
+                      
+          <mat-form-field fxFlex=50%>
+                <input matInput  type="text" placeholder="Objeto de la inversión" 
+                formControlName="objeto" required
+                />
+                <mat-icon matSuffix>mode_edit</mat-icon>
+                <div *ngIf="submitted && f.objeto.errors">
+                        <mat-error [hidden]="!f.objeto.errors.required">
+                            Debe introducir el objeto de la inversión
+                        </mat-error>
+                </div>
+               
+            </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start" fxLayoutGap="0.5%">
+                      
+                <mat-form-field fxFlex=50%>
+                      
+                      <input matInput  type="text" placeholder="Lugar de la inversión" 
+                      formControlName="lugar" required
+                      />
+                      <mat-icon matSuffix>mode_edit</mat-icon>
+                      <div *ngIf="submitted && f.lugar.errors">
+                              <mat-error [hidden]="!f.lugar.errors.required">
+                                  Debe introducir un lugar
+                              </mat-error>
+                      </div>
+                     
+                </mat-form-field>
+      
+      
+              </div>
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start" fxLayoutGap="0.5%">
+                      
+                <mat-form-field fxFlex=10%>
+                      <input matInput  type="number" 
+                      placeholder="Cuantía" 
+                      formControlName="cantidad" required/>
+                    
+                      <mat-icon matSuffix>euro_symbol</mat-icon>
+                      <div *ngIf="submitted && f.cantidad.errors">
+                              <mat-error [hidden]="!f.cantidad.errors.required">
+                                  Debe introducir una cantidad
+                              </mat-error>
+                      </div>
+                     
+                </mat-form-field>
+      
+      
+              </div>
+
+    
+          <!-- Botón inciar inversión -->
+          <div fxLayout="row" fxLayout.xs="column" 
+          fxLayoutAlign="satart" fxLayoutGap="0.5%">
+          <button mat-raised-button 
+                 [disabled]="inversionForm.invalid"
+                 color="warn"
+                  type="submit">
+              <span>Crear</span>
+              <mat-icon>save</mat-icon>
+            </button>  
+            <button mat-stroked-button   [routerLink]="['/home',{ outlets: { contenedor: ['list-inversiones'] } }]" skipLocationChange>
+                <span> Volver a inversiones en curso</span>
+                <mat-icon>business_center</mat-icon>
+              </button>  
+         
+      </div>
+      
+  
+      </form>
+    </mat-card>
+
+
+
+
+

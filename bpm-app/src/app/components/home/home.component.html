@@ -1,0 +1,53 @@
+
+<div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="start" >
+      <mat-toolbar color="primary" fxFlex="100%">
+
+              <h1>  
+                  BPM Prueba PC &nbsp;
+              </h1>  
+              <button mat-button [routerLink]="['/home',{ outlets: { contenedor: ['list-inversiones'] } }]" skipLocationChange>
+                <span>Inversiones en curso</span>
+                <mat-icon>business_center</mat-icon>
+              </button>  
+      <!-- Solo para usuarios administradore todo ngif -->
+              <button *ngIf="currentuser.username==='admin'"
+              mat-button  [routerLink]="['/home',{ outlets: { contenedor: ['deploy'] } }]" 
+              skipLocationChange
+              >
+                <span>Desplegar proceso</span>
+                  <mat-icon>publish</mat-icon>
+                </button>  
+               
+                <button mat-button [routerLink]="['/home',{ outlets: { contenedor: ['list-inversiones'] } }]">
+                  <span>Inicio</span>
+                  <mat-icon>home</mat-icon>
+                </button>  
+
+                
+                <button mat-button routerLink="/">
+                    <span>Desconectar</span>
+                    <mat-icon>exit_to_app</mat-icon>
+                </button>  
+
+                <button mat-icon-button>
+                    <mat-icon>account_circle</mat-icon>
+                    <span>{{currentuser.username}}</span>
+                </button>  
+
+               
+      
+                
+        
+      </mat-toolbar>
+    
+
+</div>
+  
+<div fxLayout fxLayoutAlign="center start">
+  <div fxFlex="90">
+    <router-outlet name='contenedor'></router-outlet>
+  </div>
+</div>
+
+
+
