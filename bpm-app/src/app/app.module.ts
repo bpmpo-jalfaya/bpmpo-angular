@@ -40,6 +40,8 @@ import { BpmService } from './services/bpm.servcice';
 import { ServicesConfiguration } from './utils/servicesconfiguration';
 import { StartprocComponent } from './components/startproc/startproc.component';
 import { ListinversionesComponent } from './components/listinversiones/listinversiones.component';
+import { TaskComponent } from './components/task/task.component';
+import { InversiontaskComponent } from './components/inversiontask/inversiontask.component';
 
 
 
@@ -51,7 +53,9 @@ import { ListinversionesComponent } from './components/listinversiones/listinver
     LoginComponent,
     DeployComponent,
     StartprocComponent,
-    ListinversionesComponent
+    ListinversionesComponent,
+    TaskComponent,
+    InversiontaskComponent
   ],
   imports: [
     BrowserModule,

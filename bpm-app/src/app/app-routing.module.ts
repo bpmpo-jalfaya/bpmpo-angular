@@ -6,6 +6,7 @@ import { LoginComponent } from './components/login/login.component';
 import { DeployComponent } from './components/deploy/deploy.component';
 import { StartprocComponent } from './components/startproc/startproc.component';
 import { ListinversionesComponent } from './components/listinversiones/listinversiones.component';
+import { InversiontaskComponent } from './components/inversiontask/inversiontask.component';
 
 // const routes: Routes = [
 //   { path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -22,8 +23,9 @@ const routes: Routes = [
   children: [
     { path: 'deploy', component: DeployComponent  , outlet: 'contenedor'},
     { path: 'start-proc', component: StartprocComponent  , outlet: 'contenedor'},
-    { path: 'list-inversiones', component: ListinversionesComponent  , outlet: 'contenedor'}
-  ]
+    { path: 'list-inversiones', component: ListinversionesComponent  , outlet: 'contenedor'},
+    { path: 'inversion-task/:taskId', component: InversiontaskComponent  , outlet: 'contenedor'}
+  ], runGuardsAndResolvers: 'always',
 }
 ];
 

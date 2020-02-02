@@ -38,11 +38,15 @@ export class StartprocComponent implements OnInit {
       return;
     }
 
-    this.inversion = {
+    /*this.inversion = {
       objeto: this.f.objeto.value,
       lugar: this.f.lugar.value, 
-      cantidad: this.f.cantidad.value
-    };
+      cantidad: this.f.cantidad.value,
+      clasificacion:''
+    };*/
+    //const result: InversionTask = Object.assign({}, this.inversionTaskForm.value);
+    this.inversion = Object.assign({}, this.inversionForm.value);
+  
 
     this.bpmService.createProcess(this.inversion);
     alert('Inversión creada');

@@ -26,4 +26,10 @@ export class ServicesConfiguration {
 
       //Lista de tareas de un usuario
       public myTasks = this.BpmBaseEndPoint + '/get-mytask';
+
+      //Inversion task
+      public inversionTask = this.BpmBaseEndPoint + '/get-inversion-task';
+
+      //End Inversion task
+      public endInversionTask = this.BpmBaseEndPoint + '/end-inversion-task';
 }

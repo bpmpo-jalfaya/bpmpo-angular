@@ -13,9 +13,7 @@
              <input type="file" formControlName="file" accept="text/xml" 
              (change)="handleFileInput($event.target.files)"/>
              <div *ngIf="f.file.errors">
-                <!-- <mat-error [hidden]="!f.file.errors.required">
-                         Debe seleccionar un fichero
-                </mat-error> -->
+
         </div>
             
              <div style="margin-top: 20px">

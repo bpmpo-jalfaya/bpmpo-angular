@@ -10,6 +10,7 @@ import { Inversion } from '../models/inversion';
 import { error } from '@angular/compiler/src/util';
 import { ProcessMeta } from '../models/processmeta';
 import { Task } from '../models/task';
+import { InversionTask } from '../models/inversiontask';
 
 @Injectable({
   providedIn: 'root'
@@ -17,10 +18,6 @@ import { Task } from '../models/task';
 export class BpmService {
 
   constructor(private httpClient: HttpClient, private configuration: ServicesConfiguration) { }
-
-
-
-
   /**
    * Despliegue un procesos en activiti
    * @param file  Fichero con la definición del proceso
@@ -35,7 +32,7 @@ export class BpmService {
       observe: 'events'
     }).subscribe(
       data => console.log('success', data),
-      error => console.log('oops', error)
+      error => console.log('Error al desplegar el proceso', error)
     );
   }
 
@@ -84,24 +81,54 @@ export class BpmService {
 
    public getMyTask(username: string): Observable<Task[]>{
     return this.httpClient.get<Task[]>(this.configuration.myTasks + '/' + username);
-
    }
 
+   /**
+    * Obtiene un objeto de tipo inversionTask
+    */
+
+    public getInversionTask(taskId: string, userName: string): Observable<InversionTask>{
+      return this.httpClient.get<InversionTask>(this.configuration.inversionTask + '/' + taskId + '/' + userName);
+    }
+
+    // public endInversionTask(inversionTask: InversionTask): Observable<InversionTask>{
+    //   this.httpClient.post<any>(this.configuration.createProcess, inversionTask, {
+    //     reportProgress: true,
+    //     observe: 'events'
+    //   }).subscribe(
+    //     data => console.log('success', data),
+    //     error => console.log('Error al crear inversiones', error)
+    //   );
+      
+    //   return data;
+    // }
 
 
- 
+   
 
-  // errorHandl(error) {
-  //   let errorMessage = '';
-  //   if (error.error instanceof ErrorEvent) {
-  //     // Get client-side error
-  //     errorMessage = error.error.message;
-  //   } else {
-  //     // Get server-side error
-  //     errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-  //   }
-  //   console.log(errorMessage);
-  //   return throwError(errorMessage);
-  // }
+    endInversionTask(inversionTask: InversionTask): Observable<InversionTask> {
+      return this.httpClient.post<InversionTask>(this.configuration.endInversionTask, inversionTask)
+        .pipe(
+          catchError(this.handleError)
+        );
+    }
+
+
+    private handleError(error: HttpErrorResponse) {
+      if (error.error instanceof ErrorEvent) {
+        // A client-side or network error occurred. Handle it accordingly.
+        console.error('An error occurred:', error.error.message);
+      } else {
+        // The backend returned an unsuccessful response code.
+        // The response body may contain clues as to what went wrong,
+        console.error(
+          `Backend returned code ${error.status}, ` +
+          `body was: ${error.error}`);
+      }
+      // return an observable with a user-facing error message
+      return throwError(
+        'Something bad happened; please try again later.');
+    }
+
 
 }

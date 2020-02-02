@@ -4,6 +4,7 @@ import { ProcessInstance } from '../../models/processinstance';
 import { ProcessMeta } from '../../models/processmeta';
 import { Task } from '../../models/task';
 import { User } from '../../models/user';
+import { PendingTask } from '../../models/pendingtask';
 
 @Component({
   selector: 'app-listinversiones',
@@ -14,25 +15,45 @@ export class ListinversionesComponent implements OnInit {
 
   processInstancesList: ProcessInstance[];
   taskList: Task [];
+  pendingTasksList: PendingTask[];
 
   processMeta: ProcessMeta;
   constructor(private bpmService: BpmService) { }
 
   ngOnInit() {
 
+    
     this.bpmService.getProcessInstances().subscribe((processInstancesList: ProcessInstance[]) => {
       this.processInstancesList = processInstancesList;
+     
+      const user: User = JSON.parse(localStorage.getItem('currentuser'));
+      this.bpmService.getMyTask(user.username).subscribe((taskList: Task[]) => {
+        this.taskList = taskList;
+        let  tempPendigList: PendingTask[] = [];
+        taskList.forEach(function (item) {
+          let pendingTask: PendingTask;
+          const procIns: any = processInstancesList.filter
+          (processInstance => processInstance.processDefinitionId === item.processDefinitionId);
+          pendingTask = {
+            taskId: item.id,
+            taskName: item.name,
+            processName: procIns[0].name
+          };
+          tempPendigList.push(pendingTask);
+        });
+        this.pendingTasksList = tempPendigList;
+      }, error => {
+        console.log('Error al obtener las tareas del usuario' + error);
+        throw error;
+      });
+     
     }, error => {
       console.log('Error al obtener las instacias de procesos' + error);
       throw error;
     });
-    const user: User = JSON.parse(localStorage.getItem('currentuser'));
-    this.bpmService.getMyTask(user.username).subscribe((taskList: Task[]) => {
-      this.taskList = taskList;
-    }, error => {
-      console.log('Error al obtener las tareas del usuario' + error);
-      throw error;
-    });
+
+   
+    
   }
 
   invDetail(pi: ProcessInstance){

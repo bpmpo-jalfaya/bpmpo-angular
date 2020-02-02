@@ -1,0 +1,77 @@
+<mat-card style="margin-top:10px; width: 100%;">
+    <form [formGroup]="inversionTaskForm" (ngSubmit)="endInversionTask()">
+        <h3>Tarea: {{inversionTask.taskName}} </h3>
+        <div formGroupName="inversion">
+            <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start" fxLayoutGap="0.5%">
+                <mat-form-field fxFlex=50%>
+                    <input matInput type="text" placeholder="Objeto de la inversión" formControlName="objeto" required />
+                    <mat-icon matSuffix>mode_edit</mat-icon>
+                    <div *ngIf="submitted && f.objeto.errors">
+                        <mat-error [hidden]="!f.objeto.errors.required">
+                            Debe introducir el objeto de la inversión
+                        </mat-error>
+                    </div>
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start" fxLayoutGap="0.5%">
+                <mat-form-field fxFlex=50%>
+                   <input matInput type="text" placeholder="Lugar de la inversión" formControlName="lugar" required />
+                    <mat-icon matSuffix>mode_edit</mat-icon>
+                    <div *ngIf="submitted && f.lugar.errors">
+                        <mat-error [hidden]="!f.lugar.errors.required">
+                            Debe introducir un lugar
+                        </mat-error>
+                    </div>
+                </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start" fxLayoutGap="0.5%">
+                <mat-form-field fxFlex=10%>
+                    <input matInput type="number" placeholder="Cuantía" formControlName="cantidad" required/>
+
+                    <mat-icon matSuffix>euro_symbol</mat-icon>
+                    <div *ngIf="submitted && f.cantidad.errors">
+                        <mat-error [hidden]="!f.cantidad.errors.required">
+                            Debe introducir una cantidad
+                        </mat-error>
+                    </div>
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start" fxLayoutGap="0.5%">
+                    <mat-form-field fxFlex=50%>
+                       <input matInput type="text" placeholder="clasificación" formControlName="clasificacion" readonly />
+                    </mat-form-field>
+                </div>
+
+                <div  *ngIf="inversionTask.taskName==='Aprobar inversión'" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start" fxLayoutGap="0.5%">
+                        <mat-form-field fxFlex=30%>
+                        
+                                <mat-label>Aprobar inversión:</mat-label>
+                                <select matNativeControl formControlName="aprobada">
+                                  <option value="true">Aprobar</option>
+                                  <option value="false">Rechazar</option>S
+                                </select>
+                                     
+                        </mat-form-field>
+                    </div>
+        </div><!--  Fin grupo de inverion -->
+
+
+        <!-- Botón inciar inversión -->
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="satart" fxLayoutGap="0.5%">
+            <button mat-raised-button [disabled]="inversionTaskForm.invalid" color="warn" type="submit">
+                <span>Terminar tarea</span>
+                <mat-icon>save</mat-icon>
+            </button>
+            <button mat-stroked-button [routerLink]="['/home',{ outlets: { contenedor: ['list-inversiones'] } }]" skipLocationChange>
+                <span>Volver</span>
+                <mat-icon>business_center</mat-icon>
+            </button>
+
+        </div>
+
+       
+
+
+    </form>
+</mat-card>

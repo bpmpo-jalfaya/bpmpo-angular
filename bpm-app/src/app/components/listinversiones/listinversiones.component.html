@@ -1,3 +1,38 @@
+
+
+<div fxLayout="row" fxLayout.xs="column" 
+  fxLayoutAlign="start" fxLayoutGap="0.5%" style="margin-top: 20px">
+  <button mat-stroked-button
+          color="primary"
+          [routerLink]="['/home',{ outlets: { contenedor: ['start-proc'] } }]" 
+          skipLocationChange>
+      <span>Iniciar nueva inversión</span>
+      <mat-icon>business_center</mat-icon>
+    </button>  
+   
+ 
+</div>
+<mat-card style="margin-top:20px; width: 80%;" >  
+
+                <div style="padding-top: 2px">
+        
+                         <h3>Mis tareas pendientes:</h3>
+                </div>
+
+                <mat-list dense *ngFor="let tp of pendingTasksList">
+                        <mat-list-item> 
+                                <mat-icon>arrow_right</mat-icon>
+                                <b>{{tp.processName}}</b>
+                                 <span style="margin-right: 4px;"></span>
+                                <a [routerLink]="['/home',{ outlets: { contenedor: ['inversion-task',tp.taskId] } } ]">{{tp.taskName}}</a>
+                                    <!-- <button mat-stroked-button (click)="invDetail(pi)">realizar tarea</button> -->
+                                   
+                         </mat-list-item> 
+                </mat-list> 
+                
+        
+        </mat-card>
+
 <mat-card style="margin-top:20px; width: 80%;" >  
         <div style="padding-top: 2px">
                 <h3>Lista de inversiones</h3>
@@ -8,15 +43,10 @@
                             <mat-icon>arrow_right</mat-icon>
                             {{pi.startDate | date: 'dd/MM/yyyy'}}
                             <span style="margin-right: 4px;"></span>
+                            <!-- {{pi.id}}  -->
+                            <span style="margin-right: 4px;"></span>
                             <b>{{pi.name}} </b>
-                            <span style="margin-right: 4px;"></span>
-                            <button mat-button (click)="invDetail(pi)">Ver detalles</button>
-
-                            <span style="margin-right: 4px;"></span>
-                            {{pi.id}} 
-
-                           
-                        </mat-list-item> 
+                         </mat-list-item> 
                 </mat-list> 
                 <!-- <li *ngFor="let pi of processInstancesList" >
                         <span style=""><b>{{pi.name}} &nbsp;</b></span> 
@@ -25,27 +55,6 @@
                 </li> -->
         </mat-card-content>
         <!-- Botón inciar inversión -->
-        <div fxLayout="row" fxLayout.xs="column" 
-            fxLayoutAlign="start" fxLayoutGap="0.5%">
-            <button mat-stroked-button
-                    color="primary"
-                    [routerLink]="['/home',{ outlets: { contenedor: ['start-proc'] } }]" 
-                    skipLocationChange>
-                <span>Iniciar nueva inversión</span>
-                <mat-icon>business_center</mat-icon>
-              </button>  
-             
-           
-        </div>
+      
         
-        <h3>Mis tareas</h3>
-        <mat-list dense *ngFor="let task of taskList">
-                <mat-list-item> 
-                    
-                    <b>{{task.name}} </b>
-                    <span style="margin-right: 4px;"></span>
-
-                   
-                </mat-list-item> 
-        </mat-list> 
 </mat-card>

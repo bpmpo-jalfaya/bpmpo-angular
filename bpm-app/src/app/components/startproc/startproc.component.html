@@ -6,7 +6,7 @@
                       
           <mat-form-field fxFlex=50%>
                 <input matInput  type="text" placeholder="Objeto de la inversión" 
-                formControlName="objeto" required
+                formControlName="objeto" required autocomplete="off"
                 />
                 <mat-icon matSuffix>mode_edit</mat-icon>
                 <div *ngIf="submitted && f.objeto.errors">
@@ -22,7 +22,7 @@
                 <mat-form-field fxFlex=50%>
                       
                       <input matInput  type="text" placeholder="Lugar de la inversión" 
-                      formControlName="lugar" required
+                      formControlName="lugar" required autocomplete="off"
                       />
                       <mat-icon matSuffix>mode_edit</mat-icon>
                       <div *ngIf="submitted && f.lugar.errors">
@@ -40,7 +40,7 @@
                 <mat-form-field fxFlex=10%>
                       <input matInput  type="number" 
                       placeholder="Cuantía" 
-                      formControlName="cantidad" required/>
+                      formControlName="cantidad" required autocomplete="off"/>
                     
                       <mat-icon matSuffix>euro_symbol</mat-icon>
                       <div *ngIf="submitted && f.cantidad.errors">
