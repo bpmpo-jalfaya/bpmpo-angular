@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   //9992 Zuul
-  apiUrl: 'http://localhost:9992'
+  //apiUrl: 'http://localhost:9992'
+  apiUrl: 'http://localhost:9999/activiti-back'
 };
 
 /*

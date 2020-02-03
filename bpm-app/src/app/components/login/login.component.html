@@ -10,7 +10,7 @@
         <mat-card-content>
           <mat-form-field class="example-full-width">
                 <input matInput  type="text" placeholder="Usuario" 
-                formControlName="username" required
+                formControlName="username" required autocomplete="off"
                 />
                 <div *ngIf="submitted && f.username.errors">
                         <mat-error [hidden]="!f.username.errors.required">
