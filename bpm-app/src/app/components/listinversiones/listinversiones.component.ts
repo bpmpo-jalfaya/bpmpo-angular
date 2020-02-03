@@ -29,8 +29,8 @@ export class ListinversionesComponent implements OnInit {
       const user: User = JSON.parse(localStorage.getItem('currentuser'));
       this.bpmService.getMyTask(user.username).subscribe((taskList: Task[]) => {
         this.taskList = taskList;
-        let  tempPendigList: PendingTask[] = [];
-        taskList.forEach(function (item) {
+        const  tempPendigList: PendingTask[] = [];
+        taskList.forEach( (item) => {
           let pendingTask: PendingTask;
           const procIns: any = processInstancesList.filter
           (processInstance => processInstance.processDefinitionId === item.processDefinitionId);

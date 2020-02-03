@@ -42,6 +42,8 @@ import { StartprocComponent } from './components/startproc/startproc.component';
 import { ListinversionesComponent } from './components/listinversiones/listinversiones.component';
 import { TaskComponent } from './components/task/task.component';
 import { InversiontaskComponent } from './components/inversiontask/inversiontask.component';
+import { DeployResolver } from './resolvers/deploy.resolver';
+import { ToastrModule } from 'ngx-toastr';
 
 
 
@@ -58,6 +60,7 @@ import { InversiontaskComponent } from './components/inversiontask/inversiontask
     InversiontaskComponent
   ],
   imports: [
+    ToastrModule.forRoot(),
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -88,7 +91,8 @@ import { InversiontaskComponent } from './components/inversiontask/inversiontask
   providers: [AuthService,
     AuthGuard,
     BpmService,
-    ServicesConfiguration
+    ServicesConfiguration,
+    DeployResolver
 
   ],
   bootstrap: [AppComponent]

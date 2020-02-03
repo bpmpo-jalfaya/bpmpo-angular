@@ -52,7 +52,7 @@ export class InversiontaskComponent implements OnInit, OnDestroy {
         clasificacion: [''],
         taskId: [''],
         taskName: [''],
-        aprobada: [true]
+        aprobada: ['true']
       })
     });
 
@@ -80,6 +80,7 @@ export class InversiontaskComponent implements OnInit, OnDestroy {
     result.taskId = this.inversionTask.taskId;
     result.taskName = this.inversionTask.taskName;
     result.userName = user.username;
+    //result.inversion.aprobada = (this.f.aprobada.value);
     this.bpmService.endInversionTask(result).subscribe(inversionTask => {
       this.inversionTask = inversionTask;
       this.router.navigate(['/home', { outlets: { contenedor: ['list-inversiones'] } }],
